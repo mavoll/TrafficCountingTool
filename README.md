@@ -26,7 +26,7 @@ The format per line of those files is:
 
 * For just trying out, you can find an image and tracking result files [here](/test_data/cam_01/recording_day/time_slice/).
 
-1. Start tool, select an image representing the cams perspective and set parameters. Default parameters are taken from the image (created at) and its path using python´s os module.
+1. Start tool, select an image representing the cams perspective and set parameters. Default parameters are taken from the image (created at) and its path using python's os module.
 
 <p align="center">
   <img src="/images/set_image_parameter.jpg" width="600" align="middle">
@@ -61,7 +61,7 @@ The format per line of those files is:
   <img src="/images/start_counting.jpg" width="600" align="middle">
 </p>
 
-6. Choose export granularities and save results to excel. 
+6. Choose export granularity and save results to excel. For each chosen granularity you will find an separate excel sheet (aggregated accordingly) and if you have chosen "export raw data" than you will find an sheet for raw data (one line per intersection) too. If you select an existing excel file to export to, than new sheets will be added to it. Existing and equal named sheets will be overwritten. 
 
 <p align="center">
   <img src="/images/save_results_to_excel.jpg" width="300" align="middle">
