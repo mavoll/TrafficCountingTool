@@ -28,8 +28,8 @@ To run the tool:
 2. Select tracking result files and choose the object classes you want to count.
 
 <p align="center">
-  <img src="/images/select_tracking_files.jpg" width="500" align="middle">
-  <img src="/images/select_classes.jpg" width="100" align="middle">
+  <img src="/images/select_tracking_files.jpg" width="450" align="middle">
+  <img src="/images/select_classes.jpg" width="150" align="middle">
 </p>
 
 3. Draw all tracks (related to former chosen object classes).
@@ -41,7 +41,7 @@ To run the tool:
 4. Draw counting lines into image.
 
 <p align="center">
-  <img src="/images/draw_counting_lines.jpg" width="500" align="middle">
+  <img src="/images/draw_counting_lines.jpg" width="600" align="middle">
 </p>
 
 5. Start counting (can take a while depending off number of tracks and counting lines).
