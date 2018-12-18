@@ -70,7 +70,7 @@ The format per line of those files is:
 
 ## Intersection calculation
 
-Intersection calculation is done using determinant. Have a look [here](https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection)
+Intersection calculation is done using determinant. Have a look [here](https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection).
 
 ## Authors
 
