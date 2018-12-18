@@ -7,7 +7,12 @@ To run the tool:
 * just run the executable file (.exe file for windows; .app for mac will follow) 
 
 ### Please note:
-* This tool depends on former generated tracking results. See this [repository](https://github.com/mavoll/MotionPathsExtraction) describing an approach to extract vehicle and pedestrian motion tracks from recorded videos using open-source software.  
+* This tool depends on former generated tracking result files. Have a look at this [repository](https://github.com/mavoll/MotionPathsExtraction) describing an approach to extract vehicle and pedestrian motion tracks from recorded videos using open-source software.
+* You can find example tracking result files [here](/test_data/cam_01/recording_day/time_slice/tracks_01.txt).
+The format per line of those files is:
+  * [image_is, object_id, rectangle_x, rectangle_y, widht, height, object_class, not relevant, not relevant, not relevant]
+    * Object classes: {1: 'person', 2: 'bicycle', 3: 'car', 4: 'motorcycle', 6: 'bus', 8: 'truck', 17: 'dog'}
+    * rectangle_x and rectangle_y are representing the lower left corner of each rectangle
 
 ## Prerequisites and used versions
 
@@ -22,14 +27,14 @@ To run the tool:
 1. Start tool, select an image representing the cams perspective and set parameters. Default values are taken from the image and its path using python´s os module.
 
 <p align="center">
-  <img src="/images/set_image_parameter.jpg" width="200" align="middle">
+  <img src="/images/set_image_parameter.jpg" width="600" align="middle">
 </p>
 
 2. Select tracking result files and choose the object classes you want to count.
 
 <p align="center">
-  <img src="/images/select_tracking_files.jpg" width="500" align="middle">
-  <img src="/images/select_classes.jpg" width="100" align="middle">
+  <img src="/images/select_tracking_files.jpg" width="450" align="middle">
+  <img src="/images/select_classes.jpg" width="150" align="middle">
 </p>
 
 3. Draw all tracks (related to former chosen object classes).
@@ -41,7 +46,7 @@ To run the tool:
 4. Draw counting lines into image.
 
 <p align="center">
-  <img src="/images/draw_counting_lines.jpg" width="500" align="middle">
+  <img src="/images/draw_counting_lines.jpg" width="600" align="middle">
 </p>
 
 5. Start counting (can take a while depending off number of tracks and counting lines).
