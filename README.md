@@ -24,7 +24,6 @@ The format per line of those files is:
 
 ## Usage
 
-### Please note:
 * For just trying out, you can find an image and tracking result files [here](/test_data/cam_01/recording_day/time_slice/).
 
 1. Start tool, select an image representing the cams perspective and set parameters. Default parameters are taken from the image (created at) and its path using python´s os module.
