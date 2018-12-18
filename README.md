@@ -53,8 +53,8 @@ To run the tool:
 6. Choose export granularities and save results to excel. 
 
 <p align="center">
-  <img src="/images/save_results_to_excel.jpg" width="400" align="middle">
-  <img src="/images/excel_results.jpg" width="500" align="middle">
+  <img src="/images/save_results_to_excel.jpg" width="300" align="middle">
+  <img src="/images/excel_results.jpg" width="600" align="middle">
 </p>
 
 
