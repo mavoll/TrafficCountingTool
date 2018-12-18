@@ -9,7 +9,7 @@ To run the tool:
 ### Please note:
 * This tool depends on former generated tracking results. See this [repository](https://github.com/mavoll/MotionPathsExtraction) describing an approach to extract vehicle and pedestrian motion tracks from recorded videos using open-source software.  
 
-### Prerequisites and used versions
+## Prerequisites and used versions
 
 * Python 3.6
 * OpenCV 3.2
@@ -17,7 +17,23 @@ To run the tool:
 * Tkinter 8.6
 * openpyxl 2.4.1
 
+## Usage
 
+![Open image and select parameters](/images/set_image_parameter.jpg)
+
+![Select tracking files](/images/select_tracking_files.jpg)
+
+![Select object classes to track](/images/select_classes.jpg)
+
+![Draw all tracks](/images/draw_all_tracks.jpg)
+
+![Draw counting lines](/images/draw_counting_lines.jpg)
+
+![Start counting](/images/start_counting.jpg)
+
+![Save to Excel](/images/save_results_to_excel.jpg)
+
+![Excel result](/images/excel_results.jpg)
 
 ## Authors
 
