@@ -19,26 +19,44 @@ To run the tool:
 
 ## Usage
 
-1. Start tool, select an image representing the cams perspective. Set parameters (default values are taken from the image and its path using python´s os module):
+1. Start tool, select an image representing the cams perspective and set parameters. Default values are taken from the image and its path using python´s os module.
 
 <p align="center">
   <img src="/images/set_image_parameter.jpg" width="200" align="middle">
 </p>
 
+2. Select tracking result files and choose the object classes you want to count.
 
-![Select tracking files](/images/select_tracking_files.jpg)
+<p align="center">
+  <img src="/images/select_tracking_files.jpg" width="200" align="middle">
+  <img src="/images/select_classes.jpg" width="200" align="middle">
+</p>
 
-![Select object classes to track](/images/select_classes.jpg)
+3. Draw all tracks (related to former chosen object classes).
 
-![Draw all tracks](/images/draw_all_tracks.jpg)
+<p align="center">
+  <img src="/images/draw_all_tracks.jpg" width="200" align="middle">
+</p>
 
-![Draw counting lines](/images/draw_counting_lines.jpg)
+4. Draw counting lines into image.
 
-![Start counting](/images/start_counting.jpg)
+<p align="center">
+  <img src="/images/draw_counting_lines.jpg" width="200" align="middle">
+</p>
 
-![Save to Excel](/images/save_results_to_excel.jpg)
+5. Start counting (can take a while depending off number of tracks and counting lines).
 
-![Excel result](/images/excel_results.jpg)
+<p align="center">
+  <img src="/images/start_counting.jpg" width="200" align="middle">
+</p>
+
+6. Choose export granularities and save results to excel. 
+
+<p align="center">
+  <img src="/images/save_results_to_excel.jpg" width="200" align="middle">
+  <img src="/images/excel_results.jpg" width="200" align="middle">
+</p>
+
 
 ## Authors
 
