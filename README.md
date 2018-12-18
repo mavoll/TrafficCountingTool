@@ -41,20 +41,20 @@ To run the tool:
 4. Draw counting lines into image.
 
 <p align="center">
-  <img src="/images/draw_counting_lines.jpg" width="400" align="middle">
+  <img src="/images/draw_counting_lines.jpg" width="500" align="middle">
 </p>
 
 5. Start counting (can take a while depending off number of tracks and counting lines).
 
 <p align="center">
-  <img src="/images/start_counting.jpg" width="400" align="middle">
+  <img src="/images/start_counting.jpg" width="500" align="middle">
 </p>
 
 6. Choose export granularities and save results to excel. 
 
 <p align="center">
   <img src="/images/save_results_to_excel.jpg" width="200" align="middle">
-  <img src="/images/excel_results.jpg" width="400" align="middle">
+  <img src="/images/excel_results.jpg" width="500" align="middle">
 </p>
 
 
