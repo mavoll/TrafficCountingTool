@@ -22,7 +22,7 @@ To run the tool:
 1. Start tool, select an image representing the cams perspective and set parameters. Default values are taken from the image and its path using python´s os module.
 
 <p align="center">
-  <img src="/images/set_image_parameter.jpg" width="200" align="middle">
+  <img src="/images/set_image_parameter.jpg" width="600" align="middle">
 </p>
 
 2. Select tracking result files and choose the object classes you want to count.
