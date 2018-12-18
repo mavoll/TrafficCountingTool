@@ -7,7 +7,7 @@ To run the tool:
 * just run the executable file (.exe file for windows; .app for mac will follow) 
 
 ### Please note:
-* This tool depends on former generated tracking results. See following ??this?? repository describing an approach to extract vehicle and pedestrian motion tracks from recorded videos.  
+* This tool depends on former generated tracking results. See this [repository](https://github.com/mavoll/MotionPathsExtraction) describing an approach to extract vehicle and pedestrian motion tracks from recorded videos using open-source software.  
 
 ### Prerequisites and used versions
 
