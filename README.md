@@ -10,9 +10,9 @@ To run the tool:
 * This tool depends on former generated tracking result files. Have a look at this [repository](https://github.com/mavoll/MotionPathsExtraction) describing an approach to extract vehicle and pedestrian motion tracks from recorded videos using open-source software.
 * You can find example tracking result files [here](/test_data/cam_01/recording_day/time_slice/tracks_01.txt).
 The format per line of those files is:
-* [image_is, object_id, rectangle_x, rectangle_y, widht, height, object_class, not relevant, not relevant, not relevant]
-* Object classes: {1: 'person', 2: 'bicycle', 3: 'car', 4: 'motorcycle', 6: 'bus', 8: 'truck', 17: 'dog'}
-* rectangle_x and rectangle_y are representing the lower left corner of each rectangle
+  * [image_is, object_id, rectangle_x, rectangle_y, widht, height, object_class, not relevant, not relevant, not relevant]
+    * Object classes: {1: 'person', 2: 'bicycle', 3: 'car', 4: 'motorcycle', 6: 'bus', 8: 'truck', 17: 'dog'}
+    * rectangle_x and rectangle_y are representing the lower left corner of each rectangle
 
 ## Prerequisites and used versions
 
