@@ -68,10 +68,6 @@ The format per line of those files is:
   <img src="/images/excel_results.jpg" width="600" align="middle">
 </p>
 
-## Intersection calculation
-
-Intersection calculation is done using determinant. Have a look [here](https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection).
-
 ## Authors
 
 * **Marc-André Vollstedt** - marc.vollstedt@gmail.com
