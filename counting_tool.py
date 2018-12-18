@@ -114,7 +114,7 @@ class App(object):
         labelDraw.pack(side="top", padx="10", pady="5")
 #        labelDraw.config(bg='lightgreen')
         
-        btn7 = Button(self.root, text="5. Start interception counting", command=self.count_interceptions)
+        btn7 = Button(self.root, text="5. Start Intersection counting", command=self.count_intersections)
         btn7.pack(side="top", fill="both", expand="yes", padx="10", pady="5")
         
         btn8 = Button(self.root, text="6. Save current image", command=self.save_image)
@@ -167,7 +167,7 @@ class App(object):
 
             cv2.namedWindow('image', cv2.WINDOW_AUTOSIZE)
             cv2.moveWindow('image', 0, 0)
-            cv2.setMouseCallback("image", self.draw_intercepting_line_callback)
+            cv2.setMouseCallback("image", self.draw_intersecting_line_callback)
 
             cv2.imshow("image", self.image)
 
@@ -381,11 +381,11 @@ class App(object):
                     with open(outputtxtfile, 'w') as the_file:
 
                         the_file.write('\n'.join('%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s' %
-                                                 (timestamp, date, time, track_class, intercept_line_id, direction,
-                                                  intercept_point_x, intercept_point_y, point1_x, point1_y, point2_x, point2_y)
+                                                 (timestamp, date, time, track_class, intersection_line_id, direction,
+                                                  intersect_point_x, intersect_point_y, point1_x, point1_y, point2_x, point2_y)
                                                  for (
-                                                     timestamp, date, time, track_class, intercept_line_id, direction,
-                                                     intercept_point_x, intercept_point_y, point1_x, point1_y, point2_x, point2_y)
+                                                     timestamp, date, time, track_class, intersection_line_id, direction,
+                                                     intersect_point_x, intersect_point_y, point1_x, point1_y, point2_x, point2_y)
                                                  in self.result_lines))
                 except Exception:
 
@@ -415,10 +415,10 @@ class App(object):
                 try:
                     self.ask_for_export_granularity()
 
-                    df = pd.DataFrame(self.result_lines, columns=('Timestamp', 'Date', 'Time', 'Object class', 'Interception line id', 'Direction',
-                                                                  'Interception point x', 'Interception point y',
-                                                                  'Interception line p1 x', 'Interception line p1 y',
-                                                                  'Interception line p2 x', 'Interception line p2 y'))
+                    df = pd.DataFrame(self.result_lines, columns=('Timestamp', 'Date', 'Time', 'Object class', 'Intersection line id', 'Direction',
+                                                                  'Intersection point x', 'Intersection point y',
+                                                                  'Intersection line p1 x', 'Intersection line p1 y',
+                                                                  'Intersection line p2 x', 'Intersection line p2 y'))
 
                     sorted_by_timestamp = df.sort_values(['Timestamp'], ascending=True)
                     sorted_by_timestamp.Timestamp = pd.to_datetime(sorted_by_timestamp['Timestamp'])
@@ -427,14 +427,14 @@ class App(object):
                     freq2 = str(self.export_granularity2) + 'min'
                     freq3 = str(self.export_granularity3) + 'min'
                     
-                    pivot1 = sorted_by_timestamp.pivot_table(index=[pd.Grouper(key='Timestamp', freq=freq)], values='Interception point x',
-                                                             columns=['Object class', 'Interception line id', 'Direction'], aggfunc='count', fill_value=0)
+                    pivot1 = sorted_by_timestamp.pivot_table(index=[pd.Grouper(key='Timestamp', freq=freq)], values='Intersection point x',
+                                                             columns=['Object class', 'Intersection line id', 'Direction'], aggfunc='count', fill_value=0)
 
-                    pivot2 = sorted_by_timestamp.pivot_table(index=[pd.Grouper(key='Timestamp', freq=freq2)], values='Interception point x',
-                                                             columns=['Object class', 'Interception line id', 'Direction'], aggfunc='count', fill_value=0)
+                    pivot2 = sorted_by_timestamp.pivot_table(index=[pd.Grouper(key='Timestamp', freq=freq2)], values='Intersection point x',
+                                                             columns=['Object class', 'Intersection line id', 'Direction'], aggfunc='count', fill_value=0)
 
-                    pivot3 = sorted_by_timestamp.pivot_table(index=[pd.Grouper(key='Timestamp', freq=freq3)], values='Interception point x',
-                                                             columns=['Object class', 'Interception line id', 'Direction'], aggfunc='count', fill_value=0)
+                    pivot3 = sorted_by_timestamp.pivot_table(index=[pd.Grouper(key='Timestamp', freq=freq3)], values='Intersection point x',
+                                                             columns=['Object class', 'Intersection line id', 'Direction'], aggfunc='count', fill_value=0)
 
                     sheetname = str(self.cam) + '_' + datetime.strptime(self.creation_time_first_frame,
                                                                         '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d') + '_' + str(self.slicee) + '_' + freq
@@ -608,7 +608,7 @@ class App(object):
 
                 point1 = (self.refPt[j][0], self.refPt[j][1])
                 point2 = (self.refPt[j + 1][0], self.refPt[j + 1][1])
-                self.put_intercepting_line_on_image(point1, point2)
+                self.put_intersection_line_on_image(point1, point2)
 
             cv2.imshow("image", self.image)
 
@@ -644,7 +644,7 @@ class App(object):
         text.pack(side=LEFT)
         scroll.pack(side=RIGHT, fill=Y)
                 
-    def count_interceptions(self):
+    def count_intersections(self):
 
         if self.path_to_tracking_res and self.refPt:
 
@@ -681,20 +681,20 @@ class App(object):
                                     track_buffer_dict[track_id] = pts
                                     continue
     
-                                intercept_line_id = 0
+                                intersection_line_id = 0
     
                                 for j in range(0, len(self.refPt), 2):
     
-                                    intercept_line_id += 1
+                                    intersection_line_id += 1
                                     point1 = (self.refPt[j][0], self.refPt[j][1])
                                     point2 = (self.refPt[j + 1][0], self.refPt[j + 1][1])
     
                                     line_params = App.get_parameters(last_center, center)
-                                    intercept_line_params = App.get_parameters(point1, point2)
-                                    intercept_point = App.check_intersec(
-                                        intercept_line_params, line_params, last_center, center, point1, point2)
+                                    intersect_line_params = App.get_parameters(point1, point2)
+                                    intersect_point = App.check_intersec(
+                                        intersect_line_params, line_params, last_center, center, point1, point2)
     
-                                    if intercept_point:
+                                    if intersect_point:
                                                                                 
                                         direction = App.get_direction(point1, point2, last_center)
                                         
@@ -709,19 +709,19 @@ class App(object):
                                                  timestamp.strftime('%Y-%m-%d'),
                                                  timestamp.strftime('%H:%M:%S'),
                                                  App.object_classes[track_class],
-                                                 intercept_line_id,
+                                                 intersection_line_id,
                                                  direction,
-                                                 intercept_point[0],
-                                                 intercept_point[1],
+                                                 intersect_point[0],
+                                                 intersect_point[1],
                                                  point1[0],
                                                  point1[1],
                                                  point2[0],
                                                  point2[1]))
         
-                                            cv2.circle(self.image, (int(intercept_point[0]), int(intercept_point[1])), 4,
+                                            cv2.circle(self.image, (int(intersect_point[0]), int(intersect_point[1])), 4,
                                                        track_color, -1)
                                             cv2.putText(self.image,
-                                                        str(intercept_line_id),
+                                                        str(intersection_line_id),
                                                         (point1[0], point1[1] - 5),
                                                         cv2.FONT_HERSHEY_SIMPLEX,
                                                         0.7,
@@ -746,19 +746,19 @@ class App(object):
    
     def draw_counting_sums(self):
                 
-        df = pd.DataFrame(self.result_lines, columns=('Timestamp', 'Date', 'Time', 'Object class', 'Interception line id', 'Direction',
-                                                                  'Interception point x', 'Interception point y',
-                                                                  'Interception line p1 x', 'Interception line p1 y',
-                                                                  'Interception line p2 x', 'Interception line p2 y'))        
+        df = pd.DataFrame(self.result_lines, columns=('Timestamp', 'Date', 'Time', 'Object class', 'Intersection line id', 'Direction',
+                                                                  'Intersection point x', 'Intersection point y',
+                                                                  'Intersection line p1 x', 'Intersection line p1 y',
+                                                                  'Intersection line p2 x', 'Intersection line p2 y'))        
                 
-        pivot1 = df.pivot_table(index=['Object class', 'Interception line id', 'Direction'],
-                                values='Interception point x',
+        pivot1 = df.pivot_table(index=['Object class', 'Intersection line id', 'Direction'],
+                                values='Intersection point x',
                                 aggfunc='count',
                                 fill_value=0,
                                 margins=True)
         
 #        pivot2 = df.pivot_table(index=['Object class'],
-#                                values='Interception point x',
+#                                values='Intersection point x',
 #                                aggfunc='count',
 #                                fill_value=0)
         
@@ -889,7 +889,7 @@ class App(object):
         else:
             return None
 
-    def draw_intercepting_line_callback(self, event, x, y, flags, param):
+    def draw_intersecting_line_callback(self, event, x, y, flags, param):
 
         if event == cv2.EVENT_LBUTTONDOWN:
             if self.refPt:
@@ -900,14 +900,14 @@ class App(object):
         elif event == cv2.EVENT_LBUTTONUP:
             if self.refPt[-1] != (x, y):
                 self.refPt.append((x, y))
-                self.put_intercepting_line_on_image(
+                self.put_intersection_line_on_image(
                     self.refPt[self.inter_line_counter], self.refPt[self.inter_line_counter + 1])
                 cv2.imshow("image", self.image)
                 self.inter_line_counter += 2
             else:  # point instead of line
                 self.refPt.pop()
 
-    def put_intercepting_line_on_image(self, point1, point2):
+    def put_intersection_line_on_image(self, point1, point2):
 
         cv2.line(self.image, point1, point2, (0, 255, 0), 2)
         cv2.putText(self.image,
