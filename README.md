@@ -28,33 +28,33 @@ To run the tool:
 2. Select tracking result files and choose the object classes you want to count.
 
 <p align="center">
-  <img src="/images/select_tracking_files.jpg" width="200" align="middle">
+  <img src="/images/select_tracking_files.jpg" width="400" align="middle">
   <img src="/images/select_classes.jpg" width="200" align="middle">
 </p>
 
 3. Draw all tracks (related to former chosen object classes).
 
 <p align="center">
-  <img src="/images/draw_all_tracks.jpg" width="200" align="middle">
+  <img src="/images/draw_all_tracks.jpg" width="400" align="middle">
 </p>
 
 4. Draw counting lines into image.
 
 <p align="center">
-  <img src="/images/draw_counting_lines.jpg" width="200" align="middle">
+  <img src="/images/draw_counting_lines.jpg" width="400" align="middle">
 </p>
 
 5. Start counting (can take a while depending off number of tracks and counting lines).
 
 <p align="center">
-  <img src="/images/start_counting.jpg" width="200" align="middle">
+  <img src="/images/start_counting.jpg" width="400" align="middle">
 </p>
 
 6. Choose export granularities and save results to excel. 
 
 <p align="center">
   <img src="/images/save_results_to_excel.jpg" width="200" align="middle">
-  <img src="/images/excel_results.jpg" width="200" align="middle">
+  <img src="/images/excel_results.jpg" width="400" align="middle">
 </p>
 
 
