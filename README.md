@@ -21,7 +21,7 @@ To run the tool:
 
 1. Start tool, select an image representing the cams perspective. Set parameters (default values are taken from the image and its path using python´s os module):
 
-<img src="/images/set_image_parameter.jpg" width="100">
+<img src="/images/set_image_parameter.jpg" width="200" display="block" margin-left="auto" margin-right="auto">
 
 ![Select tracking files](/images/select_tracking_files.jpg)
 
