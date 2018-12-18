@@ -68,6 +68,9 @@ The format per line of those files is:
   <img src="/images/excel_results.jpg" width="600" align="middle">
 </p>
 
+## Intersection counting
+
+
 
 ## Authors
 
