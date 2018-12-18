@@ -29,7 +29,7 @@ To run the tool:
 
 <p align="center">
   <img src="/images/select_tracking_files.jpg" width="500" align="middle">
-  <img src="/images/select_classes.jpg" width="200" align="middle">
+  <img src="/images/select_classes.jpg" width="100" align="middle">
 </p>
 
 3. Draw all tracks (related to former chosen object classes).
