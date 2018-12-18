@@ -55,7 +55,7 @@ The format per line of those files is:
   <img src="/images/draw_counting_lines.jpg" width="600" align="middle">
 </p>
 
-5. Start counting (can take a while depending off number of tracks and counting lines).
+5. Start intersection counting (can take a while depending off number of tracks and counting lines).
 
 <p align="center">
   <img src="/images/start_counting.jpg" width="600" align="middle">
@@ -67,10 +67,6 @@ The format per line of those files is:
   <img src="/images/save_results_to_excel.jpg" width="300" align="middle">
   <img src="/images/excel_results.jpg" width="600" align="middle">
 </p>
-
-## Intersection counting
-
-
 
 ## Authors
 
