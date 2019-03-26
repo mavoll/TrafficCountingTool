@@ -5,6 +5,9 @@ import csv
 import cv2
 from datetime import datetime
 from datetime import timedelta
+from imutils.video import FPS
+from threading import Thread
+import time
 import math
 #import matplotlib
 #matplotlib.use("TkAgg")
@@ -69,6 +72,8 @@ class App(object):
         self.export_granularity2 = 5
         self.export_granularity3 = 15
         self.export_raw = False
+        self.opencv_thread = None
+        self.source_changed = False
 
         
     def run(self):
@@ -153,23 +158,23 @@ class App(object):
 
         filename = askopenfilename(**options)
 
-        if filename:
-            self.image = cv2.imread(filename)
+        if filename:              
             self.refPt = []
             self.inter_line_counter = 0
             self.result_lines = []
             self.path_to_tracking_res = []
 
+            self.image = cv2.imread(filename)
             h = int(self.image.shape[0] * self.scale_factor)
             w = int(self.image.shape[1] * self.scale_factor)
             self.image = cv2.resize(self.image, (w, h))
             self.clone = self.image.copy()
 
-            cv2.namedWindow('image', cv2.WINDOW_AUTOSIZE)
-            cv2.moveWindow('image', 0, 0)
-            cv2.setMouseCallback("image", self.draw_intersecting_line_callback)
-
-            cv2.imshow("image", self.image)
+            if self.opencv_thread is None:
+                self.source_changed = False
+                self.opencv_thread = Thread(target=self.show_image)
+                self.opencv_thread.daemon = True
+                self.opencv_thread.start()
 
             self.creation_time_first_frame = datetime.fromtimestamp(
                 path.getctime(filename)).strftime('%Y-%m-%d %H:%M:%S')
@@ -181,6 +186,53 @@ class App(object):
             self.day = path.basename(tmp2)
             
             self.ask_for_attributes()
+    
+    def show_image(self):
+
+        cv2.namedWindow('image', cv2.WINDOW_AUTOSIZE)
+        cv2.moveWindow('image', 0, 0)
+        cv2.setMouseCallback('image', self.draw_intersecting_line_callback)
+                    
+        self.start_processing()
+
+        cv2.destroyAllWindows()
+        self.opencv_thread = None
+
+    def start_processing(self):
+        
+        if self.image is not None:
+            
+            fps = None
+            fps = FPS().start()
+            
+            while True:
+                
+                try:
+                    
+                    fps.update()
+                    fps.stop()
+                    fps_text = "FPS " + "{:.2f}".format(fps.fps())                    
+                    offsetX = 20
+                    offsetY = 20
+                    text_width = 100
+                    text_height = 10
+                    #(text_width, text_height) = cv2.getTextSize(fps_text, fontScale=cv2.FONT_HERSHEY_SIMPLEX, thickness=1)
+                    cv2.rectangle(self.image, 
+                                  (offsetX - 2, offsetY - text_height - 2), 
+                                  (offsetX + 2 + text_width, offsetY + 2), 
+                                  (0, 0, 0), cv2.FILLED)
+                    cv2.putText(self.image, fps_text, (offsetX, offsetY),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255))
+                    cv2.imshow('image', self.image)
+                    
+                    time.sleep(0.01)
+
+                    ch = 0xFF & cv2.waitKey(1)
+                    if ch == 27:
+                        break
+
+                except Exception:
+                    continue
             
     def ask_for_attributes(self):
 
@@ -576,7 +628,7 @@ class App(object):
                         messagebox.showinfo("Error parsing tracking file", e)
                         raise
 
-            cv2.imshow('image', self.image)
+            #cv2.imshow('image', self.image)
 
         else:
             messagebox.showinfo("No tracking file chosen", "Please select an tracking file first!")
@@ -592,7 +644,7 @@ class App(object):
             self.inter_line_counter = 0
             self.result_lines = []
             self.path_to_tracking_res = []
-            cv2.imshow("image", self.image)
+            #cv2.imshow("image", self.image)
 
     def reset_keep_counting_lines(self):
 
@@ -610,7 +662,7 @@ class App(object):
                 point2 = (self.refPt[j + 1][0], self.refPt[j + 1][1])
                 self.put_intersection_line_on_image(point1, point2)
 
-            cv2.imshow("image", self.image)
+            #cv2.imshow("image", self.image)
 
     def instructions(self):
 
@@ -736,7 +788,7 @@ class App(object):
                     messagebox.showinfo("Error parsing tracking file", e)
                     raise
 
-            cv2.imshow('image', self.image)
+            #cv2.imshow('image', self.image)
             self.draw_counting_sums()
 
         else:
@@ -902,7 +954,7 @@ class App(object):
                 self.refPt.append((x, y))
                 self.put_intersection_line_on_image(
                     self.refPt[self.inter_line_counter], self.refPt[self.inter_line_counter + 1])
-                cv2.imshow("image", self.image)
+                #cv2.imshow("image", self.image)
                 self.inter_line_counter += 2
             else:  # point instead of line
                 self.refPt.pop()
