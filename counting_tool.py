@@ -596,7 +596,7 @@ class App(object):
                         for row in csv_reader:
 
                             track_id = int(row[1])                            
-                            track_class = int(float(row[7]))
+                            track_class = int(float(row[6]))
                                                         
                             if  self.object_classes_to_detect.get(App.object_classes[track_class]) == 1:
                        
@@ -713,7 +713,7 @@ class App(object):
 
                             image_id = int(row[0]) + (int(self.frames_per_part) * i)
                             track_id = int(row[1])
-                            track_class = int(float(row[7]))
+                            track_class = int(float(row[6]))
                             track_color = App.create_unique_color_int(track_id)
                             cy = (float(row[3]) + float(row[5])) * self.scale_factor
                             cx = (float(row[2]) + (float(row[4]) / 2)) * self.scale_factor
@@ -804,7 +804,7 @@ class App(object):
                                                                   'Intersection line p2 x', 'Intersection line p2 y'))        
                 
         pivot1 = df.pivot_table(index=['Object class', 'Intersection line id', 'Direction'],
-                                values='Intersection point x',
+                                values='count',
                                 aggfunc='count',
                                 fill_value=0,
                                 margins=True)
