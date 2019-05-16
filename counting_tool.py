@@ -327,9 +327,8 @@ class App(object):
         if self.image is not None:
 
             options = {}
-            options['filetypes'] = [('Text file', '.txt'),
-                                    ('Comma separated', '.csv'), ('All files', '*')]
-            options['defaultextension'] = "txt"
+            options['filetypes'] = [('Comma separated', '.csv'), ('Text file', '.txt'), ('All files', '*')]
+            options['defaultextension'] = ".csv"
             options['title'] = "Choose tracking results file(s)"
 
             mes = "If you choose more than one tracking file, make sure that those\
@@ -804,7 +803,7 @@ class App(object):
                                                                   'Intersection line p2 x', 'Intersection line p2 y'))        
                 
         pivot1 = df.pivot_table(index=['Object class', 'Intersection line id', 'Direction'],
-                                values='count',
+                                values='Intersection point x',
                                 aggfunc='count',
                                 fill_value=0,
                                 margins=True)
